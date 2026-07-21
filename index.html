@@ -1,0 +1,91 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>GitHub Random Repository Finder</title>
+    <!-- Google Fonts Inter -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="style.css">
+</head>
+<body>
+
+    <div class="app-container">
+        <header class="app-header">
+            <h2>GitHub Repository Finder</h2>
+        </header>
+
+        <!-- Dropdown Pilihan Bahasa Pemrograman -->
+        <div class="selector-box">
+            <select id="language-select">
+                <option value="" disabled selected>Select a Language</option>
+                <option value="javascript">JavaScript</option>
+                <option value="typescript">TypeScript</option>
+                <option value="python">Python</option>
+                <option value="java">Java</option>
+                <option value="c++">C++</option>
+                <option value="html">HTML</option>
+                <option value="css">CSS</option>
+            </select>
+        </div>
+
+        <!-- AREA DYNAMIC KONTEN STATE -->
+        <div class="card-display">
+            
+            <!-- 1. Empty State (Tampilan Awal) -->
+            <div id="state-empty" class="state-view">
+                <p class="message-text">Please select a language</p>
+            </div>
+
+            <!-- 2. Loading State -->
+            <div id="state-loading" class="state-view hide">
+                <div class="spinner"></div>
+                <p class="message-text">Loading, please wait...</p>
+            </div>
+
+            <!-- 3. Error State -->
+            <div id="state-error" class="state-view hide">
+                <p class="error-text">Error fetching repositories</p>
+                <button id="retry-btn" class="btn-action btn-retry">Click to retry</button>
+            </div>
+
+            <!-- 4. Success State (Kartu Repositori) -->
+            <div id="state-success" class="repo-card hide">
+                <div class="repo-header">
+                    <h3 id="repo-name">repo-name</h3>
+                </div>
+                <p id="repo-desc">Repository description will be placed here dynamically from the GitHub API response.</p>
+                
+                <div class="repo-meta">
+                    <div class="meta-item">
+                        <span class="icon">🔵</span>
+                        <span id="repo-lang">Language</span>
+                    </div>
+                    <div class="meta-item">
+                        <span class="icon">⭐</span>
+                        <span id="repo-stars">0</span>
+                    </div>
+                    <div class="meta-item">
+                        <span class="icon">🍴</span>
+                        <span id="repo-forks">0</span>
+                    </div>
+                    <div class="meta-item">
+                        <span class="icon">⚠️</span>
+                        <span id="repo-issues">0</span>
+                    </div>
+                </div>
+            </div>
+
+        </div>
+
+        <!-- Tombol Refresh / Acak Ulang -->
+        <div class="footer-action">
+            <button id="refresh-btn" class="btn-main hide">Refresh</button>
+        </div>
+    </div>
+
+    <script src="script.js"></script>
+</body>
+</html>
